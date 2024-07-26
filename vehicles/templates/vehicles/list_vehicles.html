@@ -1,0 +1,39 @@
+{% extends 'vehicles/base.html' %}
+
+{% block title %}List of registered vehicles {% endblock %}
+
+{% block content %}
+    <h1 class="mt-4">Registered Vehicles</h1>
+    
+    <table id="data_table" class="table table-striped mt-3 display">
+        <thead>
+            <tr>
+                <th scope="col">Placa</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Propietario</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+    <tbody>
+        {% for vehicle in vehicles %}
+            <tr>
+            <td>{{ vehicle.license_plate }}</td>
+            <td>{{ vehicle.vehicle_manufacturer }}</td>
+            <td>{{ vehicle.vehicle_model }}</td>
+            <td>{{vehicle.owner_name}}</td>
+            <td>
+                <a href="{% url 'vehicles:view_vehicle_details' vehicle.pk %}" class="btn btn-sm btn-primary">Details</a>
+                <a href="{% url 'vehicles:edit_vehicle' vehicle.pk %}" class="btn btn-sm btn-warning">Edit</a>
+            </td>
+            </tr>
+        {% endfor %}            
+    </tbody>
+    </table>
+
+    <ul>
+    </ul>
+    <a href="{% url 'vehicles:register_vehicle' %}" class="btn btn-primary mt-3">Register New Vehicle</a>
+    
+
+{% endblock %}

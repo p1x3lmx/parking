@@ -1,0 +1,13 @@
+{% extends 'vehicles/base.html' %}
+
+{%block title %}Edit Vehicle{% endblock %}<body>
+
+{% block content %}
+    <h1 class="mt-4">Edit Vehicle: {{ vehicle.license_plate }}</h1>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+    <a href="{% url 'vehicles:list_vehicles' %}" class="btn btn-secondary mt-3">Back to List</a>
+{% endblock %}
